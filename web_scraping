@@ -1,0 +1,24 @@
+import requests 
+import urllib.request
+import time 
+from bs4 import BeautifulSoup
+
+# insert the url that the webscrape will come from 
+url = ''
+
+# connecting to the url 
+response = request.get(url)
+
+soup = BeautifulSoup(response.text, "html.parser")
+
+line_count = 1 # variable to track the line 
+
+for one_a_tag in soup.findAll('a'):  # in this case we are searching for all 'a' tags
+	if line_count >= 1: # the number indicates where we are starting 
+		link = one_a_tag['href']
+		download_url = '' # insert whatever URL with the developer link
+		urllib.request.urlretrieve(download_url, './'+link[link.find('/'_)+1:]) # insert the specific tag or line or phrase that needs to be scrapped
+		time.sleep(1) # gotta pause so you aren't spamming
+		
+		# add a 1 for the next line
+		line_count+= 1
